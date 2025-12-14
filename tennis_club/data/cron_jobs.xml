@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_training_jobs" model="ir.cron">
+            <field name="name">Training Job Processor</field>
+            <field name="model_id" ref="model_training_job"/>
+            <field name="state">code</field>
+            <field name="code">model.search([("state","=","pending")], limit=1).run_job()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+        </record>
+    </data>
+</odoo>

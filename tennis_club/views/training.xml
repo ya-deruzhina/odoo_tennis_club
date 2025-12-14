@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_training_calendar" model="ir.ui.view">
+        <field name="name">training.model.calendar</field>
+        <field name="model">training.model</field>
+        <field name="arch" type="xml">
+            <calendar
+                    string="Training Calendar"
+                    date_start="time_begin"
+                    date_stop="time_finish"
+                    color="color">
+                    <field name="tennis_court_id"/>
+                    <field name="customer_ids"/>
+                    <field name="instructor_id"/>
+                    <field name="status"/>
+                    <field name="center_id" invisible="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_training_form" model="ir.ui.view">
+        <field name="name">training.model.form</field>
+        <field name="model">training.model</field>
+        <field name="arch" type="xml">
+            <form string="Training">
+                <sheet>
+                    <group invisible="status == 'done'">
+                        <field name="name"
+                               readonly="status == 'unavailable'"/>
+                        <field name="center_id"
+                               readonly="1"/>
+                        <field name="tennis_court_id"
+                               domain="[('is_center', '=', False), ('parent_center_id','=',center_id)]"
+                               readonly="status == 'unavailable'"/>
+                        <field name="is_user_is_instructor" invisible="1"/>
+                        <field name="instructor_id"
+                               domain="[('working_center_id', '=', center_id), ('is_not_instructor', '=', False)]"
+                               readonly="is_user_is_instructor or status == 'unavailable'"/>
+                        <field name="product_training_id"
+                               domain="['|', ('center_id', '=', center_id), ('center_id', '=', False)]"
+                               readonly="status == 'unavailable'"/>
+                        <field name="customer_ids"
+                               domain="[('is_customer', '=', True), ('id', 'not in', used_customer_ids)]"
+                               widget="many2many_tags"
+                               readonly="status == 'unavailable'"/>
+                        <button name="action_add_random_customers"
+                                type="object"
+                                string="Add Customers"
+                                class="oe_highlight"
+                                invisible="status == 'unavailable'"/>
+                        <field name="time_begin" readonly="status == 'unavailable'"/>
+                        <field name="time_finish" readonly="status == 'unavailable'"/>
+                        <field name="duration_hours" readonly="1"/>
+                        <field name="count_customers" readonly="1"/>
+                        <field name="price_training_total_per_hour" readonly="1"/>
+                    </group>
+                    <group invisible="status != 'done'">
+                        <pre>
+                            <field name="fixed_data" readonly="1"/>
+                        </pre>
+                        <field name="fix_count_customers" readonly="1"/>
+                            <field name="fix_price_training_total_per_hour" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="price_per_hour_from_person" readonly="1"/>
+                        <field name="price_total_from_person" readonly="1"/>
+                        <field name="payment_to_instructor" readonly="1"/>
+                        <field name="status"/>
+                    </group>
+                    <group invisible="status != 'new'">
+                        <field name="repeat_until_date"/>
+                        <field name="how_often_repeat"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_training_list" model="ir.ui.view">
+        <field name="name">training.model.list</field>
+        <field name="model">training.model</field>
+        <field name="arch" type="xml">
+            <list string="Trainings">
+                <field name="name"/>
+                <field name="tennis_court_id"/>
+                <field name="instructor_id"/>
+                <field name="time_begin"/>
+                <field name="time_finish"/>
+                <field name="status"/>
+                <field name="center_id" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_training_search" model="ir.ui.view">
+        <field name="name">training.model.search</field>
+        <field name="model">training.model</field>
+        <field name="arch" type="xml">
+            <search string="Training Search">
+                <field name="tennis_court_id"/>
+                <field name="instructor_id"/>
+                <field name="status"/>
+                <field name="time_begin"/>
+
+                <filter name="status_new" string="New" domain="[('status','=','new')]"/>
+                <filter name="status_waiting_approve_reserve" string="Waiting for Approve Reserve" domain="[('status','=','waiting_approve_reserve')]"/>
+                <filter name="status_reserved" string="Reserved" domain="[('status','=','reserved')]"/>
+                <filter name="status_done" string="Done" domain="[('status','=','done')]"/>
+                <filter name="status_waiting_approve_cancel" string="Waiting for Approve Cancel" domain="[('status','=','waiting_approve_cancel')]"/>
+                <filter name="status_cancelled" string="Cancelled" domain="[('status','=','cancelled')]"/>
+                <filter name="status_unavailable" string="Unavailable" domain="[('status','=','unavailable')]"/>
+
+                <filter string="Courts" name="courts_dynamic" context="{'group_by':'tennis_court_id'}"/>
+                <filter name="group_instructor" string="Instructor" context="{'group_by':'instructor_id'}"/>
+                <filter string="Status" name="status_dynamic" context="{'group_by':'status'}"/>
+                <filter string="Date" name="group_by_date_day" context="{'group_by':'time_begin:day'}"/>
+                <filter string="Customers" name="group_by_customers" context="{'group_by':'customer_ids'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_training_calendar" model="ir.actions.act_window">
+        <field name="name">Training Calendar</field>
+        <field name="res_model">training.model</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="view_id" ref="view_training_calendar"/>
+    </record>
+    <menuitem id="menu_training_root" name="Trainings" sequence="10"/>
+    <menuitem id="menu_training_calendar"
+              name="Training Calendar"
+              parent="menu_training_root"
+              action="action_training_calendar"
+              sequence="20"/>
+</odoo>

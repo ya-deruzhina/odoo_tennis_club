@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="after">
+                <group>
+                    <field name="working_center_id" domain="[('is_center', '=', True)]"/>
+                    <field name="id_instructor" readonly="not is_visible_finance"/>
+                </group>
+                <group invisible="not id or not is_visible_finance">
+                    <field name="price_per_hour_personal"/>
+                    <field name="price_per_hour_split"/>
+                    <field name="price_per_hour_group"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='job_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='coach_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="before">
+                <group string="Finance" colspan="2"
+                       invisible="not is_visible_finance">
+                    <group>
+                        <field name="begin_reporting_period"/>
+                        <field name="end_reporting_period"/>
+                    </group>
+                    <group>
+                        <field name="salary" readonly="1"/>
+                        <field name="profit_to_center" readonly="1"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="after">
+                <button name="open_department_password_wizard"
+                        type="object"
+                        string="Change Department"
+                        class="oe_highlight"
+                        invisible="not is_current_user_admin"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

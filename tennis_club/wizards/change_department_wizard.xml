@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="department_password_wizard_view" model="ir.ui.view">
+        <field name="name">department.password.wizard.form</field>
+        <field name="model">department.password.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Change Department">
+                <group>
+                    <field name="working_center_id" invisible="1"/>
+                    <field name="employee_id" invisible="1"/>
+                    <field name="current_department_id" readonly="1"/>
+                    <field name="new_department_id" required="1"/>
+                    <field name="password" password="True" required="1"/>
+                </group>
+                <footer>
+                    <button name="action_apply"
+                            type="object"
+                            string="Apply"
+                            class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_department_password_wizard" model="ir.actions.act_window">
+        <field name="name">Change Department</field>
+        <field name="res_model">department.password.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

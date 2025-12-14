@@ -1,0 +1,437 @@
+<odoo>
+    <record id="center_1" model="centers.model">
+        <field name="name">Center 1</field>
+        <field name="is_center">True</field>
+        <field name="working_hours_center_utc">{"1":["10:00-20:00"], "2":["10:00-20:00"], "3":["10:00-20:00"],"4":["10:00-20:00"],"5":["10:00-20:00"], "6":["10:00-20:00"], "7":["10:00-20:00"]}</field>
+    </record>
+    <record id="center_2" model="centers.model">
+        <field name="name">Center 2</field>
+        <field name="is_center">True</field>
+        <field name="working_hours_center_utc">{"1":["09:00-20:00"], "2":["10:00-20:00"], "3":["10:00-20:00"],"4":["10:00-20:00"],"5":["10:00-20:00"], "6":["10:00-20:00"], "7":["10:00-20:00"]}</field>
+    </record>
+    <record id="center_3" model="centers.model">
+        <field name="name">Center 3</field>
+        <field name="is_center">True</field>
+        <field name="working_hours_center_utc">{"1":["10:00-20:00"], "2":["10:00-20:00"], "3":["10:00-20:00"],"4":["10:00-20:00"],"5":["10:00-20:00"], "6":["10:00-20:00"], "7":["10:00-20:00"]}</field>
+    </record>
+
+
+    <record id="court_1_1" model="centers.model">
+        <field name="name">Court 1_1</field>
+        <field name="is_center">False</field>
+        <field name="parent_center_id" ref="center_1"/>
+    </record>
+    <record id="court_1_2" model="centers.model">
+        <field name="name">Court 1_2</field>
+        <field name="is_center">False</field>
+        <field name="parent_center_id" ref="center_1"/>
+    </record>
+    <record id="court_2_1" model="centers.model">
+        <field name="name">Court 2_1</field>
+        <field name="is_center">False</field>
+        <field name="parent_center_id" ref="center_2"/>
+    </record>
+    <record id="court_2_2" model="centers.model">
+        <field name="name">Court 2_2</field>
+        <field name="is_center">False</field>
+        <field name="parent_center_id" ref="center_2"/>
+    </record>
+    <record id="court_3_1" model="centers.model">
+        <field name="name">Court 3_1</field>
+        <field name="is_center">False</field>
+        <field name="parent_center_id" ref="center_3"/>
+    </record>
+    <record id="court_3_2" model="centers.model">
+        <field name="name">Court 3_2</field>
+        <field name="is_center">False</field>
+        <field name="parent_center_id" ref="center_3"/>
+    </record>
+
+
+    <record id="customer_1" model="res.partner">
+        <field name="name">Customer 1</field>
+        <field name="email">user1</field>
+        <field name="balance_card">1000</field>
+    </record>
+    <record id="customer_2" model="res.partner">
+        <field name="name">Customer 2</field>
+        <field name="email">user2</field>
+        <field name="balance_card">1000</field>
+    </record>
+    <record id="customer_3" model="res.partner">
+        <field name="name">Customer 3</field>
+        <field name="email">user3</field>
+        <field name="balance_card">1000</field>
+    </record>
+    <record id="customer_4" model="res.partner">
+        <field name="name">Customer 4</field>
+        <field name="email">user4</field>
+        <field name="balance_card">1000</field>
+    </record>
+    <record id="customer_5" model="res.partner">
+        <field name="name">Customer 5</field>
+        <field name="email">user5</field>
+        <field name="balance_card">1000</field>
+    </record>
+    <record id="customer_6" model="res.partner">
+        <field name="name">Customer 6</field>
+        <field name="email">user6</field>
+        <field name="balance_card">1000</field>
+    </record>
+
+
+    <record id="department_head" model="hr.department">
+        <field name="name">Head</field>
+    </record>
+    <record id="department_manager" model="hr.department">
+        <field name="name">Manager</field>
+    </record>
+        <record id="department_instructor" model="hr.department">
+        <field name="name">Instructor</field>
+    </record>
+        <record id="department_not_created" model="hr.department">
+        <field name="name">Not Created</field>
+    </record>
+
+
+    <record id="head" model="hr.employee">
+        <field name="name">HEAD</field>
+        <field name="department_id" ref="department_head"/>
+    </record>
+    <record id="manager_1" model="hr.employee">
+        <field name="name">Manager 1</field>
+        <field name="working_center_id" ref="center_1"/>
+        <field name="department_id" ref="department_manager"/>
+    </record>
+    <record id="manager_2" model="hr.employee">
+        <field name="name">Manager 2</field>
+        <field name="working_center_id" ref="center_2"/>
+        <field name="department_id" ref="department_manager"/>
+    </record>
+    <record id="manager_3" model="hr.employee">
+        <field name="name">Manager 3</field>
+        <field name="working_center_id" ref="center_3"/>
+        <field name="department_id" ref="department_manager"/>
+    </record>
+    <record id="instructor_1_1" model="hr.employee">
+        <field name="name">Instructor 1_1</field>
+        <field name="working_center_id" ref="center_1"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_1_2" model="hr.employee">
+        <field name="name">Instructor 1_2</field>
+        <field name="working_center_id" ref="center_1"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_1_3" model="hr.employee">
+        <field name="name">Instructor 1_3</field>
+        <field name="working_center_id" ref="center_1"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_2_1" model="hr.employee">
+        <field name="name">Instructor 2_1</field>
+        <field name="working_center_id" ref="center_2"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_2_2" model="hr.employee">
+        <field name="name">Instructor 2_2</field>
+        <field name="working_center_id" ref="center_2"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_2_3" model="hr.employee">
+        <field name="name">Instructor 2_3</field>
+        <field name="working_center_id" ref="center_2"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_3_1" model="hr.employee">
+        <field name="name">Instructor 3_1</field>
+        <field name="working_center_id" ref="center_3"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_3_2" model="hr.employee">
+        <field name="name">Instructor 3_2</field>
+        <field name="working_center_id" ref="center_3"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+    <record id="instructor_3_3" model="hr.employee">
+        <field name="name">Instructor 3_3</field>
+        <field name="working_center_id" ref="center_3"/>
+        <field name="department_id" ref="department_instructor"/>
+    </record>
+
+
+    <record id="product_example_1" model="product.product">
+        <field name="name">TRAINING example 1</field>
+        <field name="type_training">personal</field>
+        <field name="count_customers">1</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="lst_price">10</field>
+    </record>
+    <record id="product_example_2" model="product.product">
+        <field name="name">TRAINING example 2</field>
+        <field name="type_training">personal</field>
+        <field name="count_customers">1</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="lst_price">10</field>
+    </record>
+    <record id="product_example_3" model="product.product">
+        <field name="name">TRAINING example 3</field>
+        <field name="type_training">personal</field>
+        <field name="count_customers">1</field>
+        <field name="center_id" ref="center_3"/>
+        <field name="lst_price">10</field>
+    </record>
+        <record id="product_example_4" model="product.product">
+        <field name="name">Test for All</field>
+        <field name="type_training">other</field>
+        <field name="count_customers">1</field>
+        <field name="lst_price">0</field>
+    </record>
+
+
+
+    <record id="training_1_1" model="training.model">
+        <field name="name">Training 1_1</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_1'))]"/>
+        <field name="time_begin">2025-12-15 10:00:00</field>
+        <field name="time_finish">2025-12-15 11:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_1_2" model="training.model">
+        <field name="name">Training 1_2</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_1'))]"/>
+        <field name="time_begin">2025-12-16 11:00:00</field>
+        <field name="time_finish">2025-12-16 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_1_3" model="training.model">
+        <field name="name">Training 1_3</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_1'))]"/>
+        <field name="time_begin">2025-12-15 12:00:00</field>
+        <field name="time_finish">2025-12-15 13:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_1_4" model="training.model">
+        <field name="name">Training 1_4</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_1'))]"/>
+        <field name="time_begin">2025-12-14 10:00:00</field>
+        <field name="time_finish">2025-12-14 11:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_1_5" model="training.model">
+        <field name="name">Training 1_5</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_1'))]"/>
+        <field name="time_begin">2025-12-18 11:00:00</field>
+        <field name="time_finish">2025-12-18 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+
+    <record id="training_2_1" model="training.model">
+        <field name="name">Training 2_1</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_2'))]"/>
+        <field name="time_begin">2025-12-15 10:00:00</field>
+        <field name="time_finish">2025-12-15 11:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_2_2" model="training.model">
+        <field name="name">Training 2_1</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_2'))]"/>
+        <field name="time_begin">2025-12-16 11:00:00</field>
+        <field name="time_finish">2025-12-16 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_2_3" model="training.model">
+        <field name="name">Training 2_3</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_2'))]"/>
+        <field name="time_begin">2025-12-15 12:00:00</field>
+        <field name="time_finish">2025-12-15 13:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_2_4" model="training.model">
+        <field name="name">Training 2_4</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_2'))]"/>
+        <field name="time_begin">2025-12-14 11:00:00</field>
+        <field name="time_finish">2025-12-14 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_2_5" model="training.model">
+        <field name="name">Training 2_5</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_1"/>
+        <field name="tennis_court_id" ref="court_1_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_1_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_2'))]"/>
+        <field name="time_begin">2025-12-18 11:00:00</field>
+        <field name="time_finish">2025-12-18 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+
+    <record id="training_3_1" model="training.model">
+        <field name="name">Training 3_1</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_3'))]"/>
+        <field name="time_begin">2025-12-16 10:00:00</field>
+        <field name="time_finish">2025-12-16 11:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_3_2" model="training.model">
+        <field name="name">Training 3_2</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_3'))]"/>
+        <field name="time_begin">2025-12-15 11:00:00</field>
+        <field name="time_finish">2025-12-15 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_3_3" model="training.model">
+        <field name="name">Training 3_3</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_3'))]"/>
+        <field name="time_begin">2025-12-15 12:00:00</field>
+        <field name="time_finish">2025-12-15 13:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_3_4" model="training.model">
+        <field name="name">Training 3_4</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_3'))]"/>
+        <field name="time_begin">2025-12-14 10:00:00</field>
+        <field name="time_finish">2025-12-14 11:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_3_5" model="training.model">
+        <field name="name">Training 3_5</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_1"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_1"/>
+        <field name="customer_ids" eval="[(4, ref('customer_3'))]"/>
+        <field name="time_begin">2025-12-18 11:00:00</field>
+        <field name="time_finish">2025-12-18 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+
+    <record id="training_4_1" model="training.model">
+        <field name="name">Training 4_1</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_4'))]"/>
+        <field name="time_begin">2025-12-15 10:00:00</field>
+        <field name="time_finish">2025-12-15 11:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_4_2" model="training.model">
+        <field name="name">Training 4_2</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_4'))]"/>
+        <field name="time_begin">2025-12-16 11:00:00</field>
+        <field name="time_finish">2025-12-16 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_4_3" model="training.model">
+        <field name="name">Training 4_3</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_4'))]"/>
+        <field name="time_begin">2025-12-15 12:00:00</field>
+        <field name="time_finish">2025-12-15 13:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_4_4" model="training.model">
+        <field name="name">Training 4_4</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_4'))]"/>
+        <field name="time_begin">2025-12-14 11:00:00</field>
+        <field name="time_finish">2025-12-14 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+    <record id="training_4_5" model="training.model">
+        <field name="name">Training 4_5</field>
+        <field name="status">waiting_approve_reserve</field>
+        <field name="center_id" ref="center_2"/>
+        <field name="tennis_court_id" ref="court_2_2"/>
+        <field name="product_training_id" ref="product_example_1"/>
+        <field name="instructor_id" ref="instructor_2_2"/>
+        <field name="customer_ids" eval="[(4, ref('customer_4'))]"/>
+        <field name="time_begin">2025-12-15 11:00:00</field>
+        <field name="time_finish">2025-12-15 12:00:00</field>
+        <field name="how_often_repeat">one_time</field>
+    </record>
+
+</odoo>

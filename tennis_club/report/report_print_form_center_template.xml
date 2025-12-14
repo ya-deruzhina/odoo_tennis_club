@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_center_print_form" t-name="tennis_club.report_center_print_form">
+        <t t-call="web.external_layout">
+            <main>
+                <div class="page" style="text-align:center; padding-top:150px;">
+                    <t t-foreach="docs" t-as="doc">
+                        <h1>Center Profit Summary for <b style="color:#003366;"><t t-esc="doc.name"/></b></h1>
+                        <t t-set="period" t-value="doc._get_report_period()"/>
+                        <div>
+                            <t t-esc="period[0]"/> - <t t-esc="period[1]"/>
+                        </div>
+                        <div>Total Amount for the Period
+                            <t t-esc="doc.total_money_for_period"/>
+                            <t t-esc="env.company.currency_id.symbol"/>
+                        </div>
+
+                        <p style="height: 40px;"> </p>
+                        <h2>Customer Information</h2>
+                        <div>
+                            Filter profitable customer Visit:
+                                <b style="color:#003366;"><t t-esc="doc.filter_profitable_customer_visit_id.name"/></b> -
+                                <t t-esc="doc.count_for_period"/> times
+                        </div>
+                        <div>
+                            Filter profitable customer Money:
+                                <b style="color:#003366;">
+                                    <t t-esc="doc.filter_profitable_customer_money_id.name"/></b> -
+                                <t t-esc="doc.money_for_period"/>
+                                <t t-esc="env.company.currency_id.symbol"/>
+                        </div>
+                        <p style="height: 20px;"> </p>
+                        <h2>Employee Information</h2>
+                        <div>
+                            Filter profitable Instructor:
+                                <b style="color:#003366;">
+                                    <t t-esc="doc.filter_profitable_instructor_id.name"/></b> -
+                                <t t-esc="doc.profit_for_period"/>
+                                <t t-esc="env.company.currency_id.symbol"/>
+                        </div>
+                        <p style="height: 20px;"> </p>
+                        <h2>Trainings Information</h2>
+                        <div>
+                            Filter the most visited training:
+                                <b style="color:#003366;">
+                                    <t t-esc="doc.filter_most_visited_training_id.name"/></b> -
+                                <t t-esc="doc.count_for_period_training"/> times
+                        </div>
+                        <p style="height: 40px;"> </p>
+                    </t>
+                </div>
+            </main>
+        </t>
+    </template>
+</odoo>

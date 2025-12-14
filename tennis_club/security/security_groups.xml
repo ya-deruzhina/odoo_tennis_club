@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="group_admin_full_access" model="res.groups">
+        <field name="name">Admin Full Access</field>
+        <field name="category_id" ref="base.group_system"/>
+        <field name="implied_ids" eval="[
+            (4, ref('hr.group_hr_manager')),
+            (4, ref('base.group_system')),
+            (4, ref('account.group_account_manager'))
+        ]"/>
+    </record>
+    <record id="group_administration" model="res.groups">
+        <field name="name">Administration</field>
+        <field name="implied_ids" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+    </record>
+    <record id="group_head" model="res.groups">
+        <field name="name">Head</field>
+        <field name="implied_ids" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+    </record>
+
+    <record id="group_not_created" model="res.groups">
+        <field name="name">Not Created</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="group_instructor" model="res.groups">
+        <field name="name">Instructor</field>
+        <field name="implied_ids" eval="[
+            (4, ref('tennis_club.group_not_created')),
+            (4, ref('hr.group_hr_user')),
+        ]"/>
+    </record>
+    <record id="group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="implied_ids" eval="[
+        (4, ref('tennis_club.group_instructor')),
+        (4, ref('hr.group_hr_manager')),
+        (4, ref('account.group_account_manager')),
+        ]"/>
+    </record>
+</odoo>

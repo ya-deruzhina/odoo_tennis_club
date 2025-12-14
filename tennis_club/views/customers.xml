@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_my_res_partner_model" model="ir.actions.act_window">
+                <field name="name">Customers</field>
+                <field name="res_model">res.partner</field>
+                <field name="view_mode">list,form</field>
+                <field name="domain">[("is_customer","=",True)]</field>
+        </record>
+
+        <menuitem id="menu_my_res_partner_model_root" name="My Partner Models"/>
+        <menuitem id="menu_my_res_partner_model"
+                      name="Customers"
+                      action="action_my_res_partner_model"/>
+
+        <record id="view_my_res_partner_model_list" model="ir.ui.view">
+            <field name="name">res.partner.list.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="activation_date"/>
+                    <field name="club_card"/>
+                    <field name="is_customer"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_form_my_res_partner_model_form" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="activation_date" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group/field[@name='function']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='title']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="active" string="Active Customer"/>
+                    <field name="club_card" string="Club Card №" readonly="1"/>
+                    <field name="telegram_chat_id"
+                           groups="tennis_club.group_admin_full_access"/>
+                    <field name="is_permission_to_notify" invisible="not is_current_user_admin_and_manager"/>
+                    <field name="balance_card"
+                           string="Balance Card"
+                           readonly="1"
+                           invisible="not is_current_user_admin_and_manager"/>
+                    <field name="frozen_balance_card"
+                           string="Frozen Balance Card"
+                           readonly="1"
+                           invisible="not is_current_user_admin_and_manager"/>
+                </xpath>
+                <xpath expr="//sheet/group" position="after">
+                    <button name="action_create_invoice"
+                            type="object"
+                            string="Create Invoice"
+                            class="oe_highlight"
+                            icon="fa-file-invoice-dollar"
+                            invisible="not is_current_user_admin_and_manager"/>
+                    <group>
+                        <field name="invoice_ids"
+                               readonly="0"
+                               invisible="not is_current_user_admin_and_manager"/>
+                    </group>
+                    <group>
+                        <field name="training_ids"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

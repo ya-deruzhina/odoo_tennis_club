@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--model_res_partner-->
+    <record id="res_partner_move_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for model_res_partner</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="res_partner_rule_not_created" model="ir.rule">
+        <field name="name">Not Created: only read access for model_res_partner</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_not_created'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="res_partner_rule_instructor" model="ir.rule">
+        <field name="name">Instructor: limited access for model_res_partner</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="res_partner_rule_manager" model="ir.rule">
+        <field name="name">Instructor: limited access for model_res_partner</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+<!--model_account_move-->
+    <record id="account_move_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for model_account_move</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="account_move_rule_not_created" model="ir.rule">
+        <field name="name">Not Created: only read access for model_account_move</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_not_created'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="account_move_rule_instructor" model="ir.rule">
+        <field name="name">Instructor: limit access for model_account_move</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="account_move_rule_manager" model="ir.rule">
+        <field name="name">Manager: full access for model_account_move</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+<!--model_centers_model-->
+    <record id="centers_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for model_centers_model</field>
+        <field name="model_id" ref="tennis_club.model_centers_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="centers_model_rule_not_created" model="ir.rule">
+        <field name="name">Not Created: only read access for model_centers_model</field>
+        <field name="model_id" ref="tennis_club.model_centers_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_not_created'))]"/>
+        <field name="domain_force">[
+            '|',
+            ('employee_ids','in',[user.employee_id.id]),
+            ('parent_employee_ids','in',[user.employee_id.id])]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="centers_model_rule_instructor" model="ir.rule">
+        <field name="name">Instructor: limit access for model_centers_model</field>
+        <field name="model_id" ref="tennis_club.model_centers_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+        <field name="domain_force">[
+            '|',
+            ('employee_ids','in',[user.employee_id.id]),
+            ('parent_employee_ids','in',[user.employee_id.id])]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="centers_model_rule_manager" model="ir.rule">
+        <field name="name">Manager: full access for model_centers_model</field>
+        <field name="model_id" ref="tennis_club.model_centers_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_manager'))]"/>
+        <field name="domain_force">[
+            '|',
+            ('employee_ids','in',[user.employee_id.id]),
+            ('parent_employee_ids','in',[user.employee_id.id])]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+<!--model_hr_employee-->
+   <record id="employee_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for model_hr_employee</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+   </record>
+   <record id="employee_rule_not_created" model="ir.rule">
+       <field name="name">Not Created: only read access for model_hr_employee</field>
+       <field name="model_id" ref="hr.model_hr_employee"/>
+       <field name="groups" eval="[(4, ref('tennis_club.group_not_created'))]"/>
+       <field name="domain_force">[
+            ("working_center_id.id", "in", [user.employee_id.working_center_id.id])
+            ]
+       </field>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="False"/>
+       <field name="perm_create" eval="False"/>
+       <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="employee_rule_instructor" model="ir.rule">
+        <field name="name">Instructor: limit access for model_hr_employee</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+        <field name="domain_force">[
+            ("working_center_id.id", "in", [user.employee_id.working_center_id.id]),
+            ("id_instructor", "in", [user.employee_id.id]),
+            ]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+
+<!--model_training_model-->
+    <record id="training_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for model_training_model</field>
+        <field name="model_id" ref="tennis_club.model_training_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="domain_force">[(1, "=", 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="training_rule_not_created" model="ir.rule">
+        <field name="name">Not Created: only read access for model_training_model</field>
+        <field name="model_id" ref="tennis_club.model_training_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_not_created'))]"/>
+        <field name="domain_force">[
+            "&amp;",
+            ("status","in",["new","unavailable"]),
+            ("center_id","=",user.employee_id.working_center_id.id)
+        ]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="training_rule_instructor" model="ir.rule">
+        <field name="name">Instructor: limit access for model_training_model</field>
+        <field name="model_id" ref="tennis_club.model_training_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+       <field name="domain_force">[
+            "|",
+                ("instructor_id", "=", user.employee_id.id),
+                "&amp;",
+                    ("center_id", "=", user.employee_id.working_center_id.id),
+                    ("status", "in", ["new", "unavailable"])
+        ]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="training_rule_manager" model="ir.rule">
+        <field name="name">Manager: full access for model_training_model</field>
+        <field name="model_id" ref="tennis_club.model_training_model"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_manager'))]"/>
+        <field name="domain_force">[
+            ("center_id", "=", user.employee_id.working_center_id.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+<!--model_product_product-->
+    <record id="product_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for model_product_product</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="product_rule_not_created" model="ir.rule">
+        <field name="name">Not Created: only read access for model_product_product</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_not_created'))]"/>
+        <field name="domain_force"> [
+            ("center_id", "in", [user.employee_id.working_center_id.id])
+        ]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="product_rule_instructor" model="ir.rule">
+        <field name="name">Instructor: limit access for model_product_product</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+        <field name="domain_force"> [
+            ("center_id", "in", [user.employee_id.working_center_id.id])
+        ]</field><field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="product_rule_manager" model="ir.rule">
+        <field name="name">Manager: full access for model_product_product</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_manager'))]"/>
+        <field name="domain_force">[
+            "|",
+            ("center_id", "in", [user.employee_id.working_center_id.id]),
+            ('center_id', '=', False)
+            ]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+<!--model_department_password_wizard-->
+    <record id="department_password_wizard_rule_group_admin_full_access" model="ir.rule">
+        <field name="name">Admin: all access for department_password_wizard</field>
+        <field name="model_id" ref="tennis_club.model_department_password_wizard"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_admin_full_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!--model_training_generator-->
+    <record id="model_training_generator_group_instructor" model="ir.rule">
+        <field name="name">Instructor: access for training_generator</field>
+        <field name="model_id" ref="tennis_club.model_training_generator"/>
+        <field name="groups" eval="[(4, ref('tennis_club.group_instructor'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>
